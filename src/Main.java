@@ -1,9 +1,9 @@
 import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         printIsLeapYear(2021);
         recommendApplicationVersion(0, 2016);
-        calculateDeliveryDays(25);
     }
 
     public static void printIsLeapYear(int year) {
@@ -22,6 +22,7 @@ public class Main {
             System.out.println(year + " не является високосным");
         }
     }
+
 
     public static void recommendApplicationVersion(int clientOS, int deviceYear) {
         boolean deviceIsOld = isDeviceOld(deviceYear);
@@ -44,28 +45,28 @@ public class Main {
         return deviceYear <= currentYear;
     }
 
-    public static int calculateDeliveryDays(int deliveryDistance) {
-        int result = 1;
-        if (deliveryDistance > 20) {
-            result++;
+    public static int distanceTime(int km) {
+        if (km <= 20) {
+            return 1;
+        } else if (km > 20 && km < 60) {
+            return 2;
+        } else if (km >= 60 && km < 100) {
+            return 3;
+        } else {
+            return 0;
         }
-        if (deliveryDistance > 60) {
-            result++;
-        }
-        if (deliveryDistance > 100) {
-            result = -1;
-        }
-        return result;
+    }
 
-        switch (deliveryDistance) {
-            case 1:
-            case 2:
-            case 3:
-                System.out.println("Количество дней для доставки составит " + deliveryDistance);
-                break;
-            case -1:
-                System.out.println("Доставка невозможна");
-                break;
+    public static void main(String[] args) {
+        int deliveryDistance = 95;
+        int days = distanceTime(deliveryDistance);
+        if (days > 0) {
+            System.out.println("Потребуется дней: " + days + " срок доставки.");
+        } else {
+            System.out.println("Доставки нет.");
         }
     }
 }
+
+
+
